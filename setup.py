@@ -15,14 +15,16 @@ except IOError:
     README = ''
 
 
+# This is a forked repository.
+# Please view the original at https://github.com/expo/exponent-server-sdk-python.
 setup(
     name='exponent_server_sdk',
-    version='0.2.0',
+    version='0.2.1',
     description='Expo Server SDK for Python',
     long_description=README,
-    url='https://github.com/expo/exponent-server-sdk-python',
-    author='Expo Team',
-    author_email='exponent.team@gmail.com',
+    url='https://github.com/captrona-ab/expo-server-sdk-python',
+    author='Expo Team and Kraftkallan Team',
+    author_email='drift-kontroll@hemoskola.se',
     license='MIT',
     install_requires=[
         'requests',
