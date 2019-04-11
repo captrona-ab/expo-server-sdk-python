@@ -1,5 +1,19 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from collections import namedtuple
 import json
+import re
+
+
+EXPONENT_PUSH_TOKEN_REGEX = re.compile(
+    r'''
+    (^ExponentPushToken\[.+\]$)
+    |(^ExpoPushToken\[.+\]$)
+    |(^[a-z\d]{8}-[a-z\d]{4}-[a-z\d]{4}-[a-z\d]{4}-[a-z\d]{12}$)
+    ''',
+    re.VERBOSE | re.IGNORECASE
+)
+
 
 
 class PushResponseError(Exception):
@@ -208,9 +222,10 @@ class PushClient(object):
         """Returns `True` if the token is an Exponent push token"""
         import six
 
-        return (
+        return bool(
             isinstance(token, six.string_types) and
-            token.startswith('ExponentPushToken'))
+            re.search(EXPONENT_PUSH_TOKEN_REGEX, token)
+        )
 
     def _publish_internal(self, push_messages):
         """Send push notifications
